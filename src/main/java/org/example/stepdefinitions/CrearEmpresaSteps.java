@@ -11,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.time.Duration;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class CrearEmpresaSteps {
@@ -51,12 +52,10 @@ public class CrearEmpresaSteps {
         element.sendKeys(txt_RazonSocial);
     }
 
-    @Then("Debo ver la nueva página para cargar la información")
-    public void debo_ver_la_nueva_página_para_cargar_la_información(String tituloEsperado){
-        WebElement element = driver.findElement(By.xpath("//*[@id=\"lbl_Add_Empresa\"]"));
-        System.out.println("tituloEsperado = " + tituloEsperado);
-        System.out.println("titulo = " + element.getText());
-        assertTrue(element.getText().contains(tituloEsperado));
+    @Then("Debo ver el titulo {string}")
+    public void debo_ver_el_titulo(String txt_titulo) {
+        String titulo = driver.findElement(By.xpath("//*[@id=\"lbl_Add_Empresa\"]")).getText();
+        assertEquals(titulo, txt_titulo);
         driver.quit();
     }
 }

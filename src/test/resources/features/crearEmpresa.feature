@@ -7,6 +7,14 @@ Feature: Crear una empresa
     Given Estoy en la página principal
     When Selecciono el menú empresas
     And Presiono el botón Nueva empresa
-    And Ingreso "800.587.254-7" como nuevo NIT
-    And Ingreso "Prueba Empresa" como nueva razon social
-    Then Debo ver la nueva página para cargar la información
+    And Ingreso "<NIT>" como nuevo NIT
+    And Ingreso "<empresa>" como nueva razon social
+    Then Debo ver el titulo "<titulo>"
+
+    Examples:
+      | NIT | empresa | titulo   |
+      | 800.001.000-1  | Prueba1     | Adicionar Empresa  |
+      | 801.002.002-2 | Alejandria Consulting   | Adicionar Empresa  |
+      | admin | admin    | Adicionar Empresa |
+      | admin | adminko  | Adicionar Empresa     |
+      | user2 | user2    | userhome  |
